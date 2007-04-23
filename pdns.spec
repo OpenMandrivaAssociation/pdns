@@ -1,11 +1,11 @@
 Summary:	PowerDNS is a Versatile Database Driven Nameserver
 Name:		pdns
-Version:	2.9.20
-Release:	%mkrel 4
+Version:	2.9.21
+Release:	%mkrel 1
 License:	GPL
 Group:		System/Servers
 URL:		http://www.powerdns.com/
-Source0:	http://downloads.powerdns.com/releases/pdns-%{version}.tar.bz2
+Source0:	http://downloads.powerdns.com/releases/pdns-%{version}.tar.gz
 # wget -rm http://rtfm.powerdns.com
 Source1:	rtfm.powerdns.com.tar.bz2
 Patch0:		pdns-2.9.7-init.patch

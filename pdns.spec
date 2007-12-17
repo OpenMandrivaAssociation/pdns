@@ -31,7 +31,6 @@ BuildRequires:	boost-devel
 #BuildRequires:	docbook-utils-pdf
 Provides:	nameserver powerdns PowerDNS
 Obsoletes:	nameserver powerdns PowerDNS
-BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
 %description
 PowerDNS is a versatile nameserver which supports a large number

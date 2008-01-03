@@ -14,12 +14,10 @@ Requires(post): rpm-helper
 Requires(preun): rpm-helper
 Requires(pre): rpm-helper
 Requires(postun): rpm-helper
-BuildRequires:	MySQL-devel
+BuildRequires:	mysql-devel
 BuildRequires:	bison
 BuildRequires:	flex
-BuildRequires:	gdbm-devel
 BuildRequires:	libstdc++-devel
-BuildRequires:	libtdb-devel
 BuildRequires:	openldap-devel
 BuildRequires:	openssl-devel
 BuildRequires:	postgresql-devel
@@ -73,17 +71,6 @@ Requires:	%{name} = %{version}
 %description	backend-pgsql
 This package contains a generic PostgreSQL backend 
 for the PowerDNS nameserver. It has configurable SQL statements.
-
-%package	backend-xdb
-Summary:	XDB/tdb/gdb backend for %{name}
-Group:		System/Servers
-Provides:	PowerDNS-backend-xdb
-Obsoletes:	PowerDNS-backend-xdb
-Requires:	%{name} = %{version}
-
-%description	backend-xdb
-This package contains a table backend for PowerDNS. Currently includes TDB,
-the Trivial Database or Tridgell Database.
 
 %package	backend-ldap
 Summary:	LDAP backend for %{name}
@@ -155,7 +142,7 @@ export CXXFLAGS="%{optflags} -DLDAP_DEPRECATED"
     --sysconfdir=%{_sysconfdir}/powerdns \
     --libdir=%{_libdir}/powerdns \
     --with-socketdir=/var/run/powerdns \
-    --with-dynmodules="gmysql gpgsql pipe xdb ldap gsqlite geo" \
+    --with-dynmodules="gmysql gpgsql pipe ldap gsqlite geo" \
     --with-modules="" \
     --with-mysql=%{_prefix} \
     --with-pgsql=%{_prefix} \
@@ -245,10 +232,6 @@ install -m755 pdns/pdns %{buildroot}%{_initrddir}/powerdns
 %defattr(-,root,root)
 %{_libdir}/powerdns/libgpgsqlbackend.so
 
-%files backend-xdb
-%defattr(-,root,root)
-%{_libdir}/powerdns/libxdbbackend.so
-
 %files backend-ldap
 %defattr(-,root,root)
 %{_libdir}/powerdns/libldapbackend.so
@@ -267,5 +250,3 @@ install -m755 pdns/pdns %{buildroot}%{_initrddir}/powerdns
 #%{_libdir}/powerdns/*.so
 %{_libdir}/powerdns/*.la
 %{_libdir}/powerdns/*.a
-
-

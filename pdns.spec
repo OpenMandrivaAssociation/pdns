@@ -109,7 +109,6 @@ Requires:	%{name} = %{version}
 Requires:	%{name}-backend-pipe = %{version}
 Requires:	%{name}-backend-mysql = %{version}
 Requires:	%{name}-backend-pgsql = %{version}
-Requires:	%{name}-backend-xdb = %{version}
 Requires:	%{name}-backend-ldap = %{version}
 Requires:	%{name}-backend-sqlite = %{version}
 Provides:	PowerDNS-devel
@@ -212,7 +211,6 @@ install -m755 pdns/pdns %{buildroot}%{_initrddir}/powerdns
 %dir %{_libdir}/powerdns
 %dir %attr(0755,powerdns,powerdns) /var/run/powerdns
 %{_bindir}/pdns_control
-%{_bindir}/xdb-fill
 %{_bindir}/zone2sql
 %{_bindir}/zone2ldap
 %{_sbindir}/pdns_server

@@ -1,4 +1,4 @@
-Summary:	PowerDNS is a Versatile Database Driven Nameserver
+Summary:	Versatile Database Driven Nameserver
 Name:		pdns
 Version:	2.9.21
 Release:	%mkrel 2

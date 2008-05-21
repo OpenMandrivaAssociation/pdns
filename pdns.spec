@@ -1,7 +1,7 @@
 Summary:	Versatile Database Driven Nameserver
 Name:		pdns
 Version:	2.9.21
-Release:	%mkrel 3
+Release:	%mkrel 4
 License:	GPL
 Group:		System/Servers
 URL:		http://www.powerdns.com/
@@ -10,6 +10,7 @@ Source0:	http://downloads.powerdns.com/releases/pdns-%{version}.tar.gz
 Source1:	rtfm.powerdns.com.tar.bz2
 Patch0:		pdns-2.9.7-init.patch
 Patch1:		pdns-2.9.18-avoid-version.diff
+Patch2:		%{name}-gcc43.patch
 Requires(post): rpm-helper
 Requires(preun): rpm-helper
 Requires(pre): rpm-helper
@@ -29,7 +30,7 @@ BuildRequires:	boost-devel
 #BuildRequires:	docbook-utils-pdf
 Provides:	nameserver powerdns PowerDNS
 Obsoletes:	nameserver powerdns PowerDNS
-BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 PowerDNS is a versatile nameserver which supports a large number
@@ -122,6 +123,7 @@ Development headers and libraries for %{name}
 %setup -q -n pdns-%{version} -a1
 %patch0 -p0
 %patch1 -p1
+%patch2 -p1
 
 # lib64 fix
 find -type f -name "configure.in" | xargs perl -pi -e "s|/lib/|/%{_lib}/|g"

@@ -1,7 +1,7 @@
 Summary:	Versatile Database Driven Nameserver
 Name:		pdns
-Version:	2.9.21
-Release:	%mkrel 5
+Version:	2.9.21.1
+Release:	%mkrel 1
 License:	GPL
 Group:		System/Servers
 URL:		http://www.powerdns.com/
@@ -146,7 +146,6 @@ export CXXFLAGS="%{optflags} -DLDAP_DEPRECATED"
     --with-dynmodules="gmysql gpgsql pipe ldap gsqlite geo" \
     --with-modules="" \
     --with-mysql=%{_prefix} \
-    --with-pgsql=%{_prefix} \
     --with-sqlite=%{_prefix} \
     --with-sqlite-includes=%{_includedir}
 

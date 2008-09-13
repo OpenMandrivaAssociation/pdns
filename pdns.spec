@@ -1,7 +1,7 @@
 Summary:	Versatile Database Driven Nameserver
 Name:		pdns
 Version:	2.9.21.1
-Release:	%mkrel 1
+Release:	%mkrel 2
 License:	GPL
 Group:		System/Servers
 URL:		http://www.powerdns.com/
@@ -11,6 +11,7 @@ Source1:	rtfm.powerdns.com.tar.bz2
 Patch0:		pdns-2.9.7-init.patch
 Patch1:		pdns-2.9.18-avoid-version.diff
 Patch2:		%{name}-gcc43.patch
+Patch3:		pdns-boost_fix.diff
 Requires(post): rpm-helper
 Requires(preun): rpm-helper
 Requires(pre): rpm-helper
@@ -124,6 +125,7 @@ Development headers and libraries for %{name}
 %patch0 -p0
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 # lib64 fix
 find -type f -name "configure.in" | xargs perl -pi -e "s|/lib/|/%{_lib}/|g"

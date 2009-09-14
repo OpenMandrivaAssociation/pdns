@@ -1,7 +1,7 @@
 Summary:	Versatile Database Driven Nameserver
 Name:		pdns
 Version:	2.9.22
-Release:	%mkrel 1
+Release:	%mkrel 2
 License:	GPL
 Group:		System/Servers
 URL:		http://www.powerdns.com/

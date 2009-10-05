@@ -9,6 +9,7 @@ Source0:	http://downloads.powerdns.com/releases/pdns-%{version}.tar.gz
 # wget -rm http://rtfm.powerdns.com
 Source1:	rtfm.powerdns.com.tar.bz2
 Patch0:		pdns-2.9.7-init.patch
+Patch1:		pdns-gcc44.patch
 Patch4:     pdns-2.9.22-fix_format.patch
 Requires(post): rpm-helper
 Requires(preun): rpm-helper
@@ -121,6 +122,7 @@ Development headers and libraries for %{name}
 
 %setup -q -n pdns-%{version} -a1
 %patch0 -p0
+%patch1 -p1 -b .gcc44
 
 # (misc) format string patch
 %patch4 -p0

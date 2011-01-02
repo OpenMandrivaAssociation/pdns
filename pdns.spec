@@ -24,8 +24,6 @@ BuildRequires:	openssl-devel
 BuildRequires:	postgresql-devel
 BuildRequires:	sqlite-devel
 BuildRequires:	zlib-devel
-BuildRequires:	autoconf2.5
-BuildRequires:	automake1.7
 BuildRequires:	boost-devel
 #BuildRequires:	docbook-utils-pdf
 Provides:	nameserver powerdns PowerDNS
@@ -132,10 +130,8 @@ find -type f -name "configure.in" | xargs perl -pi -e "s|/lib\ |/%{_lib}\ |g"
 find -type f -name "configure.in" | xargs perl -pi -e "s|/lib\"|/%{_lib}\"|g"
 
 %build
-#%%define __libtoolize /bin/true
-export WANT_AUTOCONF_2_5=1
 touch NEWS AUTHORS
-libtoolize --copy --force; aclocal-1.7; autoconf; automake-1.7 --copy --add-missing
+autoreconf -fi
 
 export CFLAGS="%{optflags} -DLDAP_DEPRECATED"
 export CXXFLAGS="%{optflags} -DLDAP_DEPRECATED"

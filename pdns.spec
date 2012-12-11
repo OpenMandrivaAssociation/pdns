@@ -260,3 +260,176 @@ rm -f %{buildroot}%{_libdir}/powerdns/*.*a
 %files backend-odbc
 %defattr(-,root,root)
 %{_libdir}/powerdns/libgodbcbackend.so
+
+
+%changelog
+* Wed Jan 25 2012 Oden Eriksson <oeriksson@mandriva.com> 3.0.1-1
++ Revision: 768359
+- 3.0.1
+
+* Thu Mar 17 2011 Oden Eriksson <oeriksson@mandriva.com> 2.9.22-9
++ Revision: 645856
+- relink against libmysqlclient.so.18
+
+* Sun Jan 02 2011 Funda Wang <fwang@mandriva.org> 2.9.22-8mdv2011.0
++ Revision: 627490
+- fix build
+
+  + Oden Eriksson <oeriksson@mandriva.com>
+    - rebuilt against mysql-5.5.8 libs, again
+    - rebuilt against mysql-5.5.8 libs
+
+* Tue Dec 07 2010 Oden Eriksson <oeriksson@mandriva.com> 2.9.22-5mdv2011.0
++ Revision: 614490
+- the mass rebuild of 2010.1 packages
+
+* Thu Feb 18 2010 Oden Eriksson <oeriksson@mandriva.com> 2.9.22-4mdv2010.1
++ Revision: 507503
+- rebuild
+
+* Mon Oct 05 2009 Oden Eriksson <oeriksson@mandriva.com> 2.9.22-3mdv2010.0
++ Revision: 454065
+- added a gcc44 patch from fedora
+- rebuild
+
+  + Thierry Vignaud <tv@mandriva.org>
+    - rebuild
+
+* Fri Mar 06 2009 Michael Scherer <misc@mandriva.org> 2.9.22-1mdv2009.1
++ Revision: 349923
+- update to 2.9.22
+- remove patch 1 about adding -avoid-version, applied upstream
+- remove patch 2 for gcc4.3, not needed anymore
+- remove patch 3, not needed anymore
+- add patch 4, to fix format sting error
+
+* Sat Dec 06 2008 Oden Eriksson <oeriksson@mandriva.com> 2.9.21.2-2mdv2009.1
++ Revision: 311314
+- rebuilt against mysql-5.1.30 libs
+
+* Tue Nov 18 2008 Oden Eriksson <oeriksson@mandriva.com> 2.9.21.2-1mdv2009.1
++ Revision: 304248
+- 2.9.21.2 (Major security fixes)
+
+* Sat Sep 13 2008 Oden Eriksson <oeriksson@mandriva.com> 2.9.21.1-2mdv2009.0
++ Revision: 284546
+- added P3 to fix build against latest boost
+
+* Sat Aug 09 2008 Michael Scherer <misc@mandriva.org> 2.9.21.1-1mdv2009.0
++ Revision: 270058
+- new version, and fix building with new pgsql policy
+
+  + Thierry Vignaud <tv@mandriva.org>
+    - rebuild early 2009.0 package (before pixel changes)
+
+* Wed May 21 2008 Oden Eriksson <oeriksson@mandriva.com> 2.9.21-4mdv2009.0
++ Revision: 209732
+- added a gcc43 patch from fedora
+- added lsb header and other fixes in the init script
+
+* Mon Feb 18 2008 Thierry Vignaud <tv@mandriva.org> 2.9.21-3mdv2008.1
++ Revision: 171019
+- rebuild
+- fix "foobar is blabla" summary (=> "blabla") so that it looks nice in rpmdrake
+
+* Thu Jan 03 2008 Oden Eriksson <oeriksson@mandriva.com> 2.9.21-2mdv2008.1
++ Revision: 142106
+- fix build
+- drop the xdb backend, not recently tested
+- rebuilt against openldap-2.4.7 libs
+
+  + Olivier Blin <blino@mandriva.org>
+    - restore BuildRoot
+
+  + Thierry Vignaud <tv@mandriva.org>
+    - kill re-definition of %%buildroot on Pixel's request
+
+* Mon Apr 23 2007 Oden Eriksson <oeriksson@mandriva.com> 2.9.21-1mdv2008.0
++ Revision: 17247
+- 2.9.21
+
+
+* Fri Jan 19 2007 Oden Eriksson <oeriksson@mandriva.com> 2.9.20-4mdv2007.0
++ Revision: 110707
+- rebuilt against new postgresql libs
+- remove lies in the description
+
+* Fri Dec 08 2006 Oden Eriksson <oeriksson@mandriva.com> 2.9.20-3mdv2007.1
++ Revision: 93708
+- Import pdns
+
+* Tue Sep 05 2006 Oden Eriksson <oeriksson@mandriva.com> 2.9.20-1mdv2007.0
+- rebuilt against MySQL-5.0.24a-1mdv2007.0 due to ABI changes
+
+* Thu May 25 2006 Oden Eriksson <oeriksson@mandriva.com> 2.9.20-2mdk
+- move the recursor to a stand alone package
+
+* Sat Apr 22 2006 Oden Eriksson <oeriksson@mandriva.com> 2.9.20-1mdk
+- 2.9.20
+- drop upstream patches; P10-P17
+
+* Tue Jan 24 2006 Oden Eriksson <oeriksson@mandriva.com> 2.9.19-3mdk
+- added debian patches (P10-P17)
+
+* Fri Nov 18 2005 Oden Eriksson <oeriksson@mandriva.com> 2.9.19-2mdk
+- rebuilt against openssl-0.9.8a
+
+* Tue Nov 01 2005 Oden Eriksson <oeriksson@mandriva.com> 2.9.19-1mdk
+- 2.9.19 (Major bugfixes)
+- new docs (S1)
+- fix deps
+- drop upstream patches; P2
+
+* Sun Oct 30 2005 Oden Eriksson <oeriksson@mandriva.com> 2.9.18-3mdk
+- rebuilt against MySQL-5.0.15
+
+* Wed Aug 31 2005 Oden Eriksson <oeriksson@mandriva.com> 2.9.18-2mdk
+- rebuilt against new openldap-2.3.6 libs
+- pass "-DLDAP_DEPRECATED" to the CFLAGS
+
+* Sun Jul 31 2005 Oden Eriksson <oeriksson@mandriva.com> 2.9.18-1mdk
+- 2.9.18
+- rediff P1
+- drop upstream applied patches (P2,P3)
+- renamed to pdns-*
+- fix deps
+- added P2 from svn to make it compile with gcc4
+- updated the manual (S1)
+
+* Thu May 05 2005 Oden Eriksson <oeriksson@mandriva.com> 2.9.17-7mdk
+- lib64 fixes
+- added P3 to make it build on x86_64 (vdanen)
+
+* Thu Apr 21 2005 Oden Eriksson <oeriksson@mandriva.com> 2.9.17-6mdk
+- rebuilt against new postgresql libs
+- rpmlint fixes
+
+* Tue Feb 08 2005 Buchan Milne <bgmilne@linux-mandrake.com> 2.9.17-5mdk
+- rebuild for ldap2.2_7
+
+* Fri Feb 04 2005 Oden Eriksson <oeriksson@mandrakesoft.com> 2.9.17-4mdk
+- rebuilt against new openldap libs
+
+* Mon Jan 24 2005 Oden Eriksson <oeriksson@mandrakesoft.com> 2.9.17-3mdk
+- rebuilt against MySQL-4.1.x and PostgreSQL-8.x system libs
+
+* Thu Jan 13 2005 Oden Eriksson <oeriksson@mandrakesoft.com> 2.9.17-2mdk
+- added the forgotten geo backend sub package
+- added new docs
+
+* Wed Jan 12 2005 Oden Eriksson <oeriksson@mandrakesoft.com> 2.9.17-1mdk
+- 2.9.17
+- rediffed P1 & P2
+- drop P3, it's included
+
+* Sun Aug 01 2004 Oden Eriksson <oeriksson@mandrakesoft.com> 2.9.16-2mdk
+- rebuilt against new deps and with gcc v3.4.x
+- remove obsolete pq++ requirements (new P2)
+- added P3
+- use libtool magic
+- misc spec file fixes
+
+* Sat Apr 17 2004 Oden Eriksson <oeriksson@mandrakesoft.com> 2.9.16-1mdk
+- 2.9.16
+- rediffed P1
+

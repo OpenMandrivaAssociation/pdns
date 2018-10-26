@@ -1,0 +1,4 @@
+Recursion was removed from the PowerDNS Authoritative Server in version 4.1.0.
+
+Please consult the docs for migration options:
+https://doc.powerdns.com/authoritative/guides/recursion.html

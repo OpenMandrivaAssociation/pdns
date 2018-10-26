@@ -1,0 +1,5 @@
+# The file perms are OK for security
+addFilter("E: non-readable")
+
+# Rpmlint gets confused by systemd unit in /lib/systemd/system
+addFilter("W: only-non-binary-in-usr-lib")

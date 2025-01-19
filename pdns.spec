@@ -37,6 +37,8 @@ BuildRequires:	pkgconfig(systemd)
 BuildRequires:	pkgconfig(yaml-cpp)
 BuildRequires:	pkgconfig(zlib)
 BuildRequires:	pkgconfig(p11-kit-1)
+BuildRequires:	pkgconfig(libzmq)
+BuildRequires:	pkgconfig(libmaxminddb)
 
 %description
 PowerDNS is a versatile nameserver which supports a large number of different

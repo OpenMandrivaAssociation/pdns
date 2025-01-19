@@ -36,8 +36,7 @@ BuildRequires:	pkgconfig(sqlite3)
 BuildRequires:	pkgconfig(systemd)
 BuildRequires:	pkgconfig(yaml-cpp)
 BuildRequires:	pkgconfig(zlib)
-Requires(pre,post,preun,postun):	rpm-helper
-Requires(post):	systemd
+BuildRequires:	pkgconfig(p11-kit-1)
 
 %description
 PowerDNS is a versatile nameserver which supports a large number of different

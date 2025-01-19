@@ -17,6 +17,8 @@ Source100:	%{name}.rpmlintrc
 BuildRequires:	bison
 BuildRequires:	flex
 BuildRequires:	libtool
+# configure script looks for systemctl
+BuildRequires:	systemd
 BuildRequires:	python-virtualenv
 BuildRequires:	boost-devel >= 1.48.0
 BuildRequires:	libstdc++-devel

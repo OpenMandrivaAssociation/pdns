@@ -2,7 +2,7 @@
 
 Summary:	Versatile Database Driven Nameserver
 Name:		pdns
-Version:	4.9.3
+Version:	4.9.4
 Release:	1
 License:	GPLv2+
 Group:		System/Servers

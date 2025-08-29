@@ -2,13 +2,13 @@
 
 Summary:	Versatile Database Driven Nameserver
 Name:		pdns
-Version:	4.9.4
+Version:	5.0.0
 Release:	1
 License:	GPLv2+
 Group:		System/Servers
 Url:		https://www.powerdns.com/
 Source0:	http://downloads.powerdns.com/releases/%{name}-%{version}.tar.bz2
-# https://github.com/PowerDNS/pdns/tree/rel/auth-3.3.1
+# https://github.com/PowerDNS/pdns/tree/rel/auth-%{version}
 #Source0:	pdns-%%{version}.tar.gz
 # Do: "wget -rm http://rtfm.powerdns.com", then compress
 Source1:	rtfm.powerdns.com.tar.xz

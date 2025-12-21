@@ -14,6 +14,11 @@ Source0:	http://downloads.powerdns.com/releases/%{name}-%{version}.tar.bz2
 Source1:	rtfm.powerdns.com.tar.xz
 Source2:	%{name}.service
 Source100:	%{name}.rpmlintrc
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	bison
 BuildRequires:	flex
 BuildRequires:	libtool

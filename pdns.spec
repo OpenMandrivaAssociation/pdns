@@ -3,7 +3,7 @@
 Summary:	Versatile Database Driven Nameserver
 Name:		pdns
 Version:	5.0.2
-Release:	1
+Release:	2
 License:	GPLv2+
 Group:		System/Servers
 Url:		https://www.powerdns.com/
@@ -16,12 +16,10 @@ Source2:	%{name}.service
 Source100:	%{name}.rpmlintrc
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	libtool-base
 BuildRequires:	slibtool
 BuildRequires:	make
 BuildRequires:	bison
 BuildRequires:	flex
-BuildRequires:	libtool
 # configure script looks for systemctl
 BuildRequires:	systemd
 BuildRequires:	python-virtualenv
@@ -323,7 +321,7 @@ done
 # Create user/group
 mkdir -p %{buildroot}%{_sysusersdir}
 cat >%{buildroot}%{_sysusersdir}/%{name}.conf <<EOF
-g powerdns
+g powerdns -
 u powerdns - "PowerDNS Name Server" %{_localstatedir}/lib/powerdns -
 EOF
 

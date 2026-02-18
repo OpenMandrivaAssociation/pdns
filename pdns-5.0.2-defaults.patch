@@ -1,0 +1,106 @@
+diff -up pdns-5.0.2/modules/bindbackend/bindbackend2.cc.omv~ pdns-5.0.2/modules/bindbackend/bindbackend2.cc
+--- pdns-5.0.2/modules/bindbackend/bindbackend2.cc.omv~	2026-02-17 21:00:13.731168972 +0100
++++ pdns-5.0.2/modules/bindbackend/bindbackend2.cc	2026-02-17 21:04:14.711950289 +0100
+@@ -1577,7 +1577,7 @@ public:
+   void declareArguments(const string& suffix = "") override
+   {
+     declare(suffix, "ignore-broken-records", "Ignore records that are out-of-bound for the zone.", "no");
+-    declare(suffix, "config", "Location of named.conf", "");
++    declare(suffix, "config", "Location of named.conf", "/srv/powerdns/named.conf");
+     declare(suffix, "check-interval", "Interval for zonefile changes", "0");
+     declare(suffix, "autoprimary-config", "Location of (part of) named.conf where pdns can write zone-statements to", "");
+     declare(suffix, "autoprimaries", "List of IP-addresses of autoprimaries", "");
+diff -up pdns-5.0.2/modules/geoipbackend/geoipbackend.cc.omv~ pdns-5.0.2/modules/geoipbackend/geoipbackend.cc
+--- pdns-5.0.2/modules/geoipbackend/geoipbackend.cc.omv~	2026-02-17 21:04:23.103819364 +0100
++++ pdns-5.0.2/modules/geoipbackend/geoipbackend.cc	2026-02-17 21:10:07.408826026 +0100
+@@ -1213,9 +1213,9 @@ public:
+ 
+   void declareArguments(const string& suffix = "") override
+   {
+-    declare(suffix, "zones-file", "YAML file to load zone(s) configuration", "");
+-    declare(suffix, "database-files", "File(s) to load geoip data from ([driver:]path[;opt=value]", "");
+-    declare(suffix, "dnssec-keydir", "Directory to hold dnssec keys (also turns DNSSEC on)", "");
++    declare(suffix, "zones-file", "YAML file to load zone(s) configuration", "/srv/powerdns/geoip-zones.yaml");
++    declare(suffix, "database-files", "File(s) to load geoip data from ([driver:]path[;opt=value]", "/usr/share/GeoIP/GeoLite2-Country.mmdb");
++    declare(suffix, "dnssec-keydir", "Directory to hold dnssec keys (also turns DNSSEC on)", "/srv/powerdns/keys");
+   }
+ 
+   DNSBackend* make(const string& suffix) override
+diff -up pdns-5.0.2/modules/gmysqlbackend/gmysqlbackend.cc.omv~ pdns-5.0.2/modules/gmysqlbackend/gmysqlbackend.cc
+--- pdns-5.0.2/modules/gmysqlbackend/gmysqlbackend.cc.omv~	2026-02-17 21:13:51.799944635 +0100
++++ pdns-5.0.2/modules/gmysqlbackend/gmysqlbackend.cc	2026-02-17 21:13:58.325326973 +0100
+@@ -85,7 +85,7 @@ public:
+     declare(suffix, "thread-cleanup", "Explicitly call mysql_thread_end() when threads end", "no");
+     declare(suffix, "ssl", "Send the SSL capability flag to the server", "no");
+ 
+-    declare(suffix, "dnssec", "Enable DNSSEC processing", "no");
++    declare(suffix, "dnssec", "Enable DNSSEC processing", "yes");
+ 
+     string record_query = "SELECT content,ttl,prio,type,domain_id,disabled,name,auth FROM records WHERE";
+ 
+diff -up pdns-5.0.2/modules/gpgsqlbackend/gpgsqlbackend.cc.omv~ pdns-5.0.2/modules/gpgsqlbackend/gpgsqlbackend.cc
+--- pdns-5.0.2/modules/gpgsqlbackend/gpgsqlbackend.cc.omv~	2026-02-17 21:14:05.921944717 +0100
++++ pdns-5.0.2/modules/gpgsqlbackend/gpgsqlbackend.cc	2026-02-17 21:14:10.987332062 +0100
+@@ -93,7 +93,7 @@ public:
+     declare(suffix, "extra-connection-parameters", "Extra parameters to add to connection string", "");
+     declare(suffix, "prepared-statements", "Use prepared statements instead of parameterized queries", "yes");
+ 
+-    declare(suffix, "dnssec", "Enable DNSSEC processing", "no");
++    declare(suffix, "dnssec", "Enable DNSSEC processing", "yes");
+ 
+     string record_query = "SELECT content,ttl,prio,type,domain_id,disabled::int,name,auth::int FROM records WHERE";
+ 
+diff -up pdns-5.0.2/modules/gsqlite3backend/gsqlite3backend.cc.omv~ pdns-5.0.2/modules/gsqlite3backend/gsqlite3backend.cc
+--- pdns-5.0.2/modules/gsqlite3backend/gsqlite3backend.cc.omv~	2026-02-17 21:10:36.898186758 +0100
++++ pdns-5.0.2/modules/gsqlite3backend/gsqlite3backend.cc	2026-02-17 21:11:21.176537223 +0100
+@@ -74,12 +74,12 @@ public:
+   //! Declares all needed arguments.
+   void declareArguments(const std::string& suffix = "") override
+   {
+-    declare(suffix, "database", "Filename of the SQLite3 database", "powerdns.sqlite");
++    declare(suffix, "database", "Filename of the SQLite3 database", "/srv/powerdns/powerdns.sqlite");
+     declare(suffix, "pragma-synchronous", "Set this to 0 for blazing speed", "");
+     declare(suffix, "pragma-foreign-keys", "Enable foreign key constraints", "no");
+     declare(suffix, "pragma-journal-mode", "SQLite3 journal mode", "WAL");
+ 
+-    declare(suffix, "dnssec", "Enable DNSSEC processing", "no");
++    declare(suffix, "dnssec", "Enable DNSSEC processing", "yes");
+ 
+     string record_query = "SELECT content,ttl,prio,type,domain_id,disabled,name,auth FROM records WHERE";
+ 
+diff -up pdns-5.0.2/modules/lmdbbackend/lmdbbackend.cc.omv~ pdns-5.0.2/modules/lmdbbackend/lmdbbackend.cc
+--- pdns-5.0.2/modules/lmdbbackend/lmdbbackend.cc.omv~	2026-02-17 21:11:48.741173447 +0100
++++ pdns-5.0.2/modules/lmdbbackend/lmdbbackend.cc	2026-02-17 21:12:15.481036461 +0100
+@@ -3306,7 +3306,7 @@ public:
+     BackendFactory("lmdb") {}
+   void declareArguments(const string& suffix = "") override
+   {
+-    declare(suffix, "filename", "Filename for lmdb", "./pdns.lmdb");
++    declare(suffix, "filename", "Filename for lmdb", "/srv/powerdns/pdns.lmdb");
+     declare(suffix, "sync-mode", "Synchronisation mode: nosync, nometasync, sync", "sync");
+     // there just is no room for more on 32 bit
+     declare(suffix, "shards", "Records database will be split into this number of shards", (sizeof(void*) == 4) ? "2" : "64");
+diff -up pdns-5.0.2/modules/lua2backend/lua2backend.cc.omv~ pdns-5.0.2/modules/lua2backend/lua2backend.cc
+--- pdns-5.0.2/modules/lua2backend/lua2backend.cc.omv~	2026-02-17 21:12:22.189624483 +0100
++++ pdns-5.0.2/modules/lua2backend/lua2backend.cc	2026-02-17 21:12:31.306163476 +0100
+@@ -34,7 +34,7 @@ public:
+ 
+   void declareArguments(const string& suffix = "") override
+   {
+-    declare(suffix, "filename", "Filename of the script for lua backend", "powerdns-luabackend.lua");
++    declare(suffix, "filename", "Filename of the script for lua backend", "/srv/powerdns/powerdns-luabackend.lua");
+     declare(suffix, "query-logging", "Logging of the Lua2 Backend", "no");
+     declare(suffix, "api", "Lua backend API version", "2");
+   }
+diff -up pdns-5.0.2/modules/remotebackend/remotebackend.cc.omv~ pdns-5.0.2/modules/remotebackend/remotebackend.cc
+--- pdns-5.0.2/modules/remotebackend/remotebackend.cc.omv~	2026-02-17 21:12:55.353060347 +0100
++++ pdns-5.0.2/modules/remotebackend/remotebackend.cc	2026-02-17 21:13:08.187569893 +0100
+@@ -1030,7 +1030,7 @@ public:
+ 
+   void declareArguments(const std::string& suffix = "") override
+   {
+-    declare(suffix, "dnssec", "Enable dnssec support", "no");
++    declare(suffix, "dnssec", "Enable dnssec support", "yes");
+     declare(suffix, "connection-string", "Connection string", "");
+   }
+ 

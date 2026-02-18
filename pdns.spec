@@ -3,7 +3,7 @@
 Summary:	Versatile Database Driven Nameserver
 Name:		pdns
 Version:	5.0.2
-Release:	2
+Release:	3
 License:	GPLv2+
 Group:		System/Servers
 Url:		https://www.powerdns.com/
@@ -44,6 +44,12 @@ BuildRequires:	pkgconfig(zlib)
 BuildRequires:	pkgconfig(p11-kit-1)
 BuildRequires:	pkgconfig(libzmq)
 BuildRequires:	pkgconfig(libmaxminddb)
+# called in the default config
+Recommends:	%{name}-backend-lmdb = %{EVRD}
+
+%patchlist
+pdns-5.0.2-defaults.patch
+pdns-drop-privs.patch
 
 %description
 PowerDNS is a versatile nameserver which supports a large number of different
@@ -56,13 +62,13 @@ backend', all available as external packages.
 %doc COPYING README rtfm.powerdns.com
 %doc %{_docdir}/pdns/*.sql
 %doc %{_docdir}/pdns/*.schema
-%config(noreplace) %attr(0600,root,root) %{_sysconfdir}/powerdns/%{name}.conf
+%attr(0750,root,powerdns) %dir %{_sysconfdir}/powerdns
+%config(noreplace) %attr(0640,root,powerdns) %{_sysconfdir}/powerdns/%{name}.conf
+%attr(0750,root,powerdns) %dir %{_sysconfdir}/powerdns/conf.d
 %{_tmpfilesdir}/%{name}.conf
 %{_sysusersdir}/%{name}.conf
 %{_unitdir}/%{name}.service
 %{_unitdir}/pdns@.service
-%dir %{_sysconfdir}/powerdns
-%dir %{_sysconfdir}/powerdns/conf.d
 %dir %{_libdir}/powerdns
 %{_mandir}/man1/*
 %{_bindir}/calidns
@@ -89,6 +95,7 @@ backend', all available as external packages.
 %{_bindir}/zone2json
 %{_bindir}/zone2ldap
 %{_bindir}/zone2sql
+%attr(6750,powerdns,powerdns) %dir /srv/powerdns
 
 #----------------------------------------------------------------------------
 %package ixfrdist
@@ -268,6 +275,7 @@ This package contains a SQLite backend for the PowerDNS nameserver.
 	--with-systemd="%{_unitdir}" \
 	--with-sqlite3 \
 	--sysconfdir=%{_sysconfdir}/powerdns \
+	--with-modules-dir=%{_libdir}/pdns \
 	--libdir=%{_libdir}/powerdns \
 	--with-socketdir=/run/powerdns \
 	--with-dynmodules="gmysql gpgsql pipe ldap lmdb lua2 gsqlite3 geoip remote bind" \
@@ -301,17 +309,17 @@ mv %{buildroot}%{_sysconfdir}/powerdns/%{name}.conf-dist %{buildroot}%{_sysconfd
 
 cat >> %{buildroot}%{_sysconfdir}/powerdns/%{name}.conf << EOF
 include-dir=%{_sysconfdir}/powerdns/conf.d
-module-dir=%{_libdir}/powerdns
 socket-dir=/run/powerdns
 setuid=powerdns
 setgid=powerdns
-launch=bind
+launch=lmdb
 EOF
 
 chmod 600 %{buildroot}%{_sysconfdir}/powerdns/%{name}.conf
 
 install -d %{buildroot}%{_sysconfdir}/powerdns/conf.d
 
+mkdir -p %{buildroot}/srv/powerdns
 
 # Fix per backend config files
 for i in geoip gmysql gpgsql gsqlite3 ldap pipe; do
@@ -322,11 +330,11 @@ done
 mkdir -p %{buildroot}%{_sysusersdir}
 cat >%{buildroot}%{_sysusersdir}/%{name}.conf <<EOF
 g powerdns -
-u powerdns - "PowerDNS Name Server" %{_localstatedir}/lib/powerdns -
+u powerdns - "PowerDNS Name Server" /srv/powerdns -
 EOF
 
 # Prepare tmpfiles support config
 mkdir -p %{buildroot}%{_tmpfilesdir}
 cat <<EOF > %{buildroot}%{_tmpfilesdir}/%{name}.conf
-d /run/powerdns 0755 powerdns powerdns
+d  /run/powerdns 0755 powerdns powerdns
 EOF

@@ -3,7 +3,7 @@
 Summary:	Versatile Database Driven Nameserver
 Name:		pdns
 Version:	5.0.3
-Release:	1
+Release:	2
 License:	GPLv2+
 Group:		System/Servers
 Url:		https://www.powerdns.com/

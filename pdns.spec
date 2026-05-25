@@ -2,12 +2,13 @@
 
 Summary:	Versatile Database Driven Nameserver
 Name:		pdns
-Version:	5.0.4
-Release:	1
+Version:	5.0.5
+#define beta beta1
+Release:	1%{?beta:~%{beta}}
 License:	GPLv2+
 Group:		System/Servers
 Url:		https://www.powerdns.com/
-Source0:	https://downloads.powerdns.com/releases/%{name}-%{version}.tar.bz2
+Source0:	https://downloads.powerdns.com/releases/%{name}-%{version}%{?beta:-%{beta}}.tar.bz2
 # https://github.com/PowerDNS/pdns/tree/rel/auth-%{version}
 #Source0:	pdns-%%{version}.tar.gz
 # Do: "wget -rm http://rtfm.powerdns.com", then compress
@@ -265,7 +266,7 @@ This package contains a SQLite backend for the PowerDNS nameserver.
 #----------------------------------------------------------------------------
 
 %prep
-%autosetup -p1 -a1
+%autosetup -p1 -a1 -n %{name}-%{version}%{?beta:-%{beta}}
 
 %conf
 %configure \

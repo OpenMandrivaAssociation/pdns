@@ -4,7 +4,7 @@ Summary:	Versatile Database Driven Nameserver
 Name:		pdns
 Version:	5.0.5
 #define beta beta1
-Release:	1%{?beta:~%{beta}}
+Release:	1%{?beta:~%{beta}}1
 License:	GPLv2+
 Group:		System/Servers
 Url:		https://www.powerdns.com/

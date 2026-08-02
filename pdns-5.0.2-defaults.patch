@@ -1,7 +1,7 @@
-diff -up pdns-5.0.2/modules/bindbackend/bindbackend2.cc.omv~ pdns-5.0.2/modules/bindbackend/bindbackend2.cc
---- pdns-5.0.2/modules/bindbackend/bindbackend2.cc.omv~	2026-02-17 21:00:13.731168972 +0100
-+++ pdns-5.0.2/modules/bindbackend/bindbackend2.cc	2026-02-17 21:04:14.711950289 +0100
-@@ -1577,7 +1577,7 @@ public:
+diff -Naur a/modules/bindbackend/bindbackend2.cc b/modules/bindbackend/bindbackend2.cc
+--- a/modules/bindbackend/bindbackend2.cc	2026-06-29 21:18:24.000000000 +0200
++++ b/modules/bindbackend/bindbackend2.cc	2026-08-03 01:03:21.962918500 +0200
+@@ -1681,7 +1681,7 @@
    void declareArguments(const string& suffix = "") override
    {
      declare(suffix, "ignore-broken-records", "Ignore records that are out-of-bound for the zone.", "no");
@@ -10,10 +10,10 @@ diff -up pdns-5.0.2/modules/bindbackend/bindbackend2.cc.omv~ pdns-5.0.2/modules/
      declare(suffix, "check-interval", "Interval for zonefile changes", "0");
      declare(suffix, "autoprimary-config", "Location of (part of) named.conf where pdns can write zone-statements to", "");
      declare(suffix, "autoprimaries", "List of IP-addresses of autoprimaries", "");
-diff -up pdns-5.0.2/modules/geoipbackend/geoipbackend.cc.omv~ pdns-5.0.2/modules/geoipbackend/geoipbackend.cc
---- pdns-5.0.2/modules/geoipbackend/geoipbackend.cc.omv~	2026-02-17 21:04:23.103819364 +0100
-+++ pdns-5.0.2/modules/geoipbackend/geoipbackend.cc	2026-02-17 21:10:07.408826026 +0100
-@@ -1213,9 +1213,9 @@ public:
+diff -Naur a/modules/geoipbackend/geoipbackend.cc b/modules/geoipbackend/geoipbackend.cc
+--- a/modules/geoipbackend/geoipbackend.cc	2026-06-29 21:18:24.000000000 +0200
++++ b/modules/geoipbackend/geoipbackend.cc	2026-08-03 01:03:21.963707820 +0200
+@@ -1245,9 +1245,9 @@
  
    void declareArguments(const string& suffix = "") override
    {
@@ -26,10 +26,10 @@ diff -up pdns-5.0.2/modules/geoipbackend/geoipbackend.cc.omv~ pdns-5.0.2/modules
    }
  
    DNSBackend* make(const string& suffix) override
-diff -up pdns-5.0.2/modules/gmysqlbackend/gmysqlbackend.cc.omv~ pdns-5.0.2/modules/gmysqlbackend/gmysqlbackend.cc
---- pdns-5.0.2/modules/gmysqlbackend/gmysqlbackend.cc.omv~	2026-02-17 21:13:51.799944635 +0100
-+++ pdns-5.0.2/modules/gmysqlbackend/gmysqlbackend.cc	2026-02-17 21:13:58.325326973 +0100
-@@ -85,7 +85,7 @@ public:
+diff -Naur a/modules/gmysqlbackend/gmysqlbackend.cc b/modules/gmysqlbackend/gmysqlbackend.cc
+--- a/modules/gmysqlbackend/gmysqlbackend.cc	2026-06-29 21:18:24.000000000 +0200
++++ b/modules/gmysqlbackend/gmysqlbackend.cc	2026-08-03 01:03:21.964660612 +0200
+@@ -93,7 +93,7 @@
      declare(suffix, "thread-cleanup", "Explicitly call mysql_thread_end() when threads end", "no");
      declare(suffix, "ssl", "Send the SSL capability flag to the server", "no");
  
@@ -38,10 +38,10 @@ diff -up pdns-5.0.2/modules/gmysqlbackend/gmysqlbackend.cc.omv~ pdns-5.0.2/modul
  
      string record_query = "SELECT content,ttl,prio,type,domain_id,disabled,name,auth FROM records WHERE";
  
-diff -up pdns-5.0.2/modules/gpgsqlbackend/gpgsqlbackend.cc.omv~ pdns-5.0.2/modules/gpgsqlbackend/gpgsqlbackend.cc
---- pdns-5.0.2/modules/gpgsqlbackend/gpgsqlbackend.cc.omv~	2026-02-17 21:14:05.921944717 +0100
-+++ pdns-5.0.2/modules/gpgsqlbackend/gpgsqlbackend.cc	2026-02-17 21:14:10.987332062 +0100
-@@ -93,7 +93,7 @@ public:
+diff -Naur a/modules/gpgsqlbackend/gpgsqlbackend.cc b/modules/gpgsqlbackend/gpgsqlbackend.cc
+--- a/modules/gpgsqlbackend/gpgsqlbackend.cc	2026-06-29 21:18:24.000000000 +0200
++++ b/modules/gpgsqlbackend/gpgsqlbackend.cc	2026-08-03 01:03:21.965625055 +0200
+@@ -100,7 +100,7 @@
      declare(suffix, "extra-connection-parameters", "Extra parameters to add to connection string", "");
      declare(suffix, "prepared-statements", "Use prepared statements instead of parameterized queries", "yes");
  
@@ -50,10 +50,10 @@ diff -up pdns-5.0.2/modules/gpgsqlbackend/gpgsqlbackend.cc.omv~ pdns-5.0.2/modul
  
      string record_query = "SELECT content,ttl,prio,type,domain_id,disabled::int,name,auth::int FROM records WHERE";
  
-diff -up pdns-5.0.2/modules/gsqlite3backend/gsqlite3backend.cc.omv~ pdns-5.0.2/modules/gsqlite3backend/gsqlite3backend.cc
---- pdns-5.0.2/modules/gsqlite3backend/gsqlite3backend.cc.omv~	2026-02-17 21:10:36.898186758 +0100
-+++ pdns-5.0.2/modules/gsqlite3backend/gsqlite3backend.cc	2026-02-17 21:11:21.176537223 +0100
-@@ -74,12 +74,12 @@ public:
+diff -Naur a/modules/gsqlite3backend/gsqlite3backend.cc b/modules/gsqlite3backend/gsqlite3backend.cc
+--- a/modules/gsqlite3backend/gsqlite3backend.cc	2026-06-29 21:18:24.000000000 +0200
++++ b/modules/gsqlite3backend/gsqlite3backend.cc	2026-08-03 01:03:21.966603077 +0200
+@@ -80,12 +80,12 @@
    //! Declares all needed arguments.
    void declareArguments(const std::string& suffix = "") override
    {
@@ -68,10 +68,10 @@ diff -up pdns-5.0.2/modules/gsqlite3backend/gsqlite3backend.cc.omv~ pdns-5.0.2/m
  
      string record_query = "SELECT content,ttl,prio,type,domain_id,disabled,name,auth FROM records WHERE";
  
-diff -up pdns-5.0.2/modules/lmdbbackend/lmdbbackend.cc.omv~ pdns-5.0.2/modules/lmdbbackend/lmdbbackend.cc
---- pdns-5.0.2/modules/lmdbbackend/lmdbbackend.cc.omv~	2026-02-17 21:11:48.741173447 +0100
-+++ pdns-5.0.2/modules/lmdbbackend/lmdbbackend.cc	2026-02-17 21:12:15.481036461 +0100
-@@ -3306,7 +3306,7 @@ public:
+diff -Naur a/modules/lmdbbackend/lmdbbackend.cc b/modules/lmdbbackend/lmdbbackend.cc
+--- a/modules/lmdbbackend/lmdbbackend.cc	2026-06-29 21:18:24.000000000 +0200
++++ b/modules/lmdbbackend/lmdbbackend.cc	2026-08-03 01:03:21.967644040 +0200
+@@ -3777,7 +3777,7 @@
      BackendFactory("lmdb") {}
    void declareArguments(const string& suffix = "") override
    {
@@ -80,10 +80,10 @@ diff -up pdns-5.0.2/modules/lmdbbackend/lmdbbackend.cc.omv~ pdns-5.0.2/modules/l
      declare(suffix, "sync-mode", "Synchronisation mode: nosync, nometasync, sync", "sync");
      // there just is no room for more on 32 bit
      declare(suffix, "shards", "Records database will be split into this number of shards", (sizeof(void*) == 4) ? "2" : "64");
-diff -up pdns-5.0.2/modules/lua2backend/lua2backend.cc.omv~ pdns-5.0.2/modules/lua2backend/lua2backend.cc
---- pdns-5.0.2/modules/lua2backend/lua2backend.cc.omv~	2026-02-17 21:12:22.189624483 +0100
-+++ pdns-5.0.2/modules/lua2backend/lua2backend.cc	2026-02-17 21:12:31.306163476 +0100
-@@ -34,7 +34,7 @@ public:
+diff -Naur a/modules/lua2backend/lua2backend.cc b/modules/lua2backend/lua2backend.cc
+--- a/modules/lua2backend/lua2backend.cc	2026-06-29 21:18:24.000000000 +0200
++++ b/modules/lua2backend/lua2backend.cc	2026-08-03 01:03:21.968577362 +0200
+@@ -34,7 +34,7 @@
  
    void declareArguments(const string& suffix = "") override
    {
@@ -92,10 +92,10 @@ diff -up pdns-5.0.2/modules/lua2backend/lua2backend.cc.omv~ pdns-5.0.2/modules/l
      declare(suffix, "query-logging", "Logging of the Lua2 Backend", "no");
      declare(suffix, "api", "Lua backend API version", "2");
    }
-diff -up pdns-5.0.2/modules/remotebackend/remotebackend.cc.omv~ pdns-5.0.2/modules/remotebackend/remotebackend.cc
---- pdns-5.0.2/modules/remotebackend/remotebackend.cc.omv~	2026-02-17 21:12:55.353060347 +0100
-+++ pdns-5.0.2/modules/remotebackend/remotebackend.cc	2026-02-17 21:13:08.187569893 +0100
-@@ -1030,7 +1030,7 @@ public:
+diff -Naur a/modules/remotebackend/remotebackend.cc b/modules/remotebackend/remotebackend.cc
+--- a/modules/remotebackend/remotebackend.cc	2026-06-29 21:18:24.000000000 +0200
++++ b/modules/remotebackend/remotebackend.cc	2026-08-03 01:03:21.969507834 +0200
+@@ -1014,7 +1014,7 @@
  
    void declareArguments(const std::string& suffix = "") override
    {

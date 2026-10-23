@@ -2,7 +2,7 @@
 
 Summary:	Versatile Database Driven Nameserver
 Name:		pdns
-Version:	5.1.4
+Version:	5.1.5
 #define beta beta1
 Release:	1
 License:	GPLv2+
